@@ -11,8 +11,9 @@
 var VideoList = (props) => (
   <div className="video-list">
     {
-      props.videos.map(video => ( 
-      <VideoListEntry video={video} />
+      props.videos.map(video => (
+      //For video title click: pass appState, from App.jsx to VideoList.jsx 
+      <VideoListEntry video={video} appState={props.appState} />
     ))
     }
   </div>

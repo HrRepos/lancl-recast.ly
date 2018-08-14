@@ -18,7 +18,10 @@ var VideoListEntry = (props) => (
         <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
       </div>
       <div className="media-body">
-        <div className="video-list-entry-title">{props.video.snippet.title}</div>
+      {/* For video title click: pass appState from VideoList.jsx to VideoListEntry.jsx
+          Detect the clicking on video entry's title 
+          Then update this.state.video to the clicked video entry */}
+        <div className="video-list-entry-title" onClick={() => props.appState({video: props.video})}> {props.video.snippet.title}</div>
         <div className="video-list-entry-detail">{props.video.snippet.description}</div>
       </div>
     </div>

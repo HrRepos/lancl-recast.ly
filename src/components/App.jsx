@@ -22,37 +22,33 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      done: false
+      videos: exampleVideoData, //videos: [],
+
+      video: exampleVideoData[0]  //Initial value for video player; will be changed by click
+      //done: false
     };
   }
-  // When a video title is clicked, the video will be displayed in the player
-  onVideoTitleClick() {
-    this.setState({
-      done: !this.state.done
-    });
-  }
   render() {
-    // [Todo] Let video play
-    // var style = {
-
-    // };
     return (
-    <div>
-      <nav className="navbar">
-        <div className="col-md-6 offset-md-3">
-          <div><h5><em>search</em> view goes here</h5></div>
-        </div>
-      </nav>
-      <div className="row">
-        <div className="col-md-7">
-          <div><h5><em>videoPlayer</em> view goes here</h5></div>
-        </div>
-        {/* [Todo] Detect the clicking on video title */}
-        <div className="col-md-5">
-          <div><h5><em>videoList</em> <VideoList videos={exampleVideoData}/></h5></div>
+      <div>
+        <nav className="navbar">
+          <div className="col-md-6 offset-md-3">
+            <div><h5><em>search</em> view goes here</h5></div>
+          </div>
+        </nav>
+        <div className="row">
+          <div className="col-md-7">
+            <div><h5><em>videoPlayer</em><VideoPlayer video={this.state.video}/> </h5></div>
+          </div>
+          
+          <div className="col-md-5">
+            {/* Just for testing */}
+            {/* <div><h5 onClick={this.onVideoTitleClick}><em>videoList</em> <VideoList videos={this.state.videos}/></h5></div> */}
+            {/* For video title click: use React's method setState() to get App's state*/}
+            <div><h5><em>videoList</em><VideoList videos={this.state.videos} appState={this.setState.bind(this)}/></h5></div>
+          </div>
         </div>
       </div>
-    </div>
     );
   }
 }
