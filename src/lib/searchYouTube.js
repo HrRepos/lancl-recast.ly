@@ -1,5 +1,4 @@
 var searchYouTube = (options, callback) => {
-  // TODO
   //var url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&key=' + options.key + '&q=' + options.query + '&maxResults=' + options.max;
   var url = 'https://www.googleapis.com/youtube/v3/search';
   $.ajax({
@@ -7,7 +6,6 @@ var searchYouTube = (options, callback) => {
     type: 'GET',
     //data: {maxResults: 5},
     data: options,
-    //[To do] If needed, check how to only get embeddable videos
     success: function(data) {
       console.log('Youtube videos are received! :)');
       //debugger;
