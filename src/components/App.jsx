@@ -27,25 +27,26 @@ class App extends React.Component {
       video: exampleVideoData[0],  //Initial value for video player; will be changed by click
       //done: false
       options: {
-        query: 'cat',
-        max: 5,
-        key: window.YOUTUBE_API_KEY
-        //part: 'snippet',
-        //type: 'video',
-        //videoEmbeddable: 'true'
+        q: 'cat',
+        maxResults: 5,
+        key: window.YOUTUBE_API_KEY,
+        part: 'snippet',
+        type: 'video',
+        videoEmbeddable: 'true'
       }
     }
   }
   //Use this method (lifecycle hook), to render your app with live videos from searchYouTube()
   componentDidMount() {
-    //debugger;
+    debugger;
     var youTubeOptions = this.state.options;
     //console.log(youTubeOptions);
-
+    //debugger;
+    var context = this;
     //Live invoke the function below
     this.props.searchYouTube(youTubeOptions, function(data) {  //Pass searchYouTube() to 'this' (might not work)
-      this.setState({videos: data});
-      this.setState({video: data[0]});
+      context.setState({videos: data, video: data[0]});
+      //context.setState({video: data[0]});
     });
   }
 
