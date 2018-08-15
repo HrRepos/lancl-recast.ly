@@ -22,12 +22,33 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videos: exampleVideoData, //videos: [],
-
-      video: exampleVideoData[0]  //Initial value for video player; will be changed by click
+      //[Todo] Replace the following line with live data from YouTube
+      videos: [], //videos: exampleVideoData,
+      video: exampleVideoData[0],  //Initial value for video player; will be changed by click
       //done: false
-    };
+      options: {
+        query: 'cat',
+        max: 5,
+        key: window.YOUTUBE_API_KEY
+        //part: 'snippet',
+        //type: 'video',
+        //videoEmbeddable: 'true'
+      }
+    }
   }
+  //Use this method (lifecycle hook), to render your app with live videos from searchYouTube()
+  componentDidMount() {
+    //debugger;
+    var youTubeOptions = this.state.options;
+    //console.log(youTubeOptions);
+
+    //Live invoke the function below
+    this.props.searchYouTube(youTubeOptions, function(data) {  //Pass searchYouTube() to 'this' (might not work)
+      this.setState({videos: data});
+      this.setState({video: data[0]});
+    });
+  }
+
   render() {
     return (
       <div>
@@ -42,9 +63,8 @@ class App extends React.Component {
           </div>
           
           <div className="col-md-5">
-            {/* Just for testing */}
-            {/* <div><h5 onClick={this.onVideoTitleClick}><em>videoList</em> <VideoList videos={this.state.videos}/></h5></div> */}
-            {/* For video title click: use React's method setState() to get App's state*/}
+            {/* For video title click: use React's method setState() to get App's state
+                [Todo] If having time, try refactoring 'appState' by moving it up as part of the class constructor*/}
             <div><h5><em>videoList</em><VideoList videos={this.state.videos} appState={this.setState.bind(this)}/></h5></div>
           </div>
         </div>
