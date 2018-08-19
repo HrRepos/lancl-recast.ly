@@ -51,7 +51,7 @@ class App extends React.Component {
   }
   //Use this method (lifecycle hook), to render your app with live videos from searchYouTube()
   componentDidMount() {
-    //[Todo] Try using React to debug, in Chrome console
+    //[Ref] Try using React to debug, in Chrome console
     //debugger;
     //var youTubeOptions = this.state.options;
     var youTubeOptions = {
@@ -64,7 +64,7 @@ class App extends React.Component {
     };
     //console.log(youTubeOptions);
     //debugger;
-    // [Todo] Understand the use of 'context' here
+    // [Note] The use of 'context' here
     var context = this;
     //Live invoke the function below
     this.props.searchYouTube(youTubeOptions, function(data) {  //Pass searchYouTube() to 'this' (might not work)
@@ -92,10 +92,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* [Todo] Figure out what _.debounce does here */}
+        {/* ._.debounce() is a method from lodash library, similiar as setTimeOut()  */}
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-          {/* [Todo] Understand the use of 'bind' here */}
+          {/* [Note] Understand the use of 'bind' here */}
             <Search handleSearchClick={_.debounce(this.handleSearchClick.bind(this), 500)}/>
             {/* <div><h5><em>search</em> view goes here</h5></div> */}
           </div>
@@ -107,9 +107,9 @@ class App extends React.Component {
           
           <div className="col-md-5">
             {/* For video title click: use React's method setState() to get App's state
-                [Todo] If having time, try refactoring 'appState' by moving it up as part of the class constructor
+                [Note] setState (as below) is a function (concise version)
                        Or, further my undrestanding of why 'appState' is defined here*/}
-                {/* [Todo] Understand the use of 'bind' here */}
+                {/* [Note] The use of 'bind' here */}
             <div><h5><em>videoList</em><VideoList videos={this.state.videos} appState={this.setState.bind(this)}/></h5></div>
           </div>
         </div>
